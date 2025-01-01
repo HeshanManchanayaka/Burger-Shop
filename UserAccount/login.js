@@ -1,9 +1,10 @@
+let customers;
 function loginData(event) {
     event.preventDefault();
     const loginEmail = document.getElementById("email").value;
     const loginPassword = document.getElementById("password").value;
 
-    const customers = JSON.parse(localStorage.getItem("customers"));
+     customers = JSON.parse(localStorage.getItem("customers"));
     if (!customers) {
         Swal.fire("No users registered.");
         return;
@@ -21,7 +22,11 @@ function loginData(event) {
         return;
     }
 
-    Swal.fire(`Welcome back, ${user.name}!`);
-
-    
+    Swal.fire(`Welcome back, ${user.name}!`)
+    .then(() => {
+        sessionStorage.setItem("loggedInUser", JSON.stringify(user));
+        console.log(user);
+        location.href = "../Admin/userAccount/userAccount.html";
+    });
+   
 }
