@@ -1,8 +1,8 @@
-let product = [];
+let product = JSON.parse(localStorage.getItem("products")) || [];
 
 function addArray(event) {
   event.preventDefault();
-
+  const code = document.getElementById("code").value;
   const name = document.getElementById("name").value;
   const price = document.getElementById("price").value;
   const qty = document.getElementById("qty").value;
@@ -12,10 +12,11 @@ function addArray(event) {
   reader.onload = function () {
     const imageBase64 = reader.result;
 
-    product.push({ name, price, qty, image: imageBase64 });
+    product.push({ code,name, price, qty, image: imageBase64 });
+    localStorage.setItem("products",JSON.stringify(product));
 
     console.log(product);
-
+    document.getElementById("code").value="";
     document.getElementById("name").value = "";
     document.getElementById("price").value = "";
     document.getElementById("qty").value = "";
@@ -34,6 +35,7 @@ function displayProducts() {
       (p, index) =>
         `<li>
           <strong>Product ${index + 1}:</strong> 
+           Code - ${p.code},
           Name - ${p.name}, 
           Price - ${p.price}, 
           Quantity - ${p.qty}
@@ -43,3 +45,6 @@ function displayProducts() {
     )
     .join("");
 }
+window.onload = function () {
+  displayProducts();
+};

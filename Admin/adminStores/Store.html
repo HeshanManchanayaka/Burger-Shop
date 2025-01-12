@@ -22,32 +22,37 @@
                 <h4 class="mb-3">Add Products</h4>
                 <form class="needs-validation" onsubmit="addArray(event)">
                   <div class="row g-3">
-                    <div class="col-sm-6">
+                    <div class="col-sm-7">
+                      <label for="code" class="form-label">Item Code</label>
+                      <input type="text" class="form-control" id="code" placeholder="" required>
+                      <div class="invalid-feedback">Item Code is required.</div>
+                    </div>
+                    <div class="col-sm-7">
                       <label for="firstName" class="form-label">Name</label>
                       <input type="text" class="form-control" id="name" placeholder="" required>
                       <div class="invalid-feedback">Valid name is required.</div>
                     </div>
               
-                    <div class="mb-3">
+                    <div class="col-sm-7">
                       <label for="formFile" class="form-label">Input Picture</label>
                       <input class="form-control" type="file" id="image">
                     </div>
               
-                    <div class="col-7">
+                    <div class="col-sm-7">
                       <label for="price" class="form-label">Price</label>
                       <input type="text" class="form-control" id="price" placeholder="" required>
                       <div class="invalid-feedback">Price is required.</div>
                     </div>
               
-                    <div class="col-md-6">
+                    <div class="col-sm-7">
                       <label for="quentity" class="form-label">Quantity</label>
                       <input type="text" class="form-control" id="qty" placeholder="" required>
                       <div class="invalid-feedback">Quantity is required.</div>
                     </div>
                   </div>
-                  <hr class="my-4">
-              
-                  <button class="btn btn-primary w-10 py-2" type="submit">Add</button>
+                  <hr class="col-sm-7">
+                  <div class="d-flex flex-column align-items-center">
+                  <button class="btn btn-primary w-10 py-2" type="submit">Add</button></div>
                 </form>
               
                 <h4 class="mt-5">Product List</h4>
