@@ -23,36 +23,57 @@
                 <form class="needs-validation" onsubmit="addArray(event)">
                   <div class="row g-3">
                     <div class="col-sm-7">
-                      <label for="code" class="form-label">Item Code</label>
+                      <label for="code" class="form-label" style="font-weight: bold;">Item Code</label>
                       <input type="text" class="form-control" id="code" placeholder="" required>
                       <div class="invalid-feedback">Item Code is required.</div>
                     </div>
                     <div class="col-sm-7">
-                      <label for="firstName" class="form-label">Name</label>
+                      <label for="category" class="form-label" style="font-weight: bold;">Category</label><br>
+                      <input type="radio" id="item1" name="category" value="Burger">
+                      <label for="item1">Burger</label><br>
+                      <input type="radio" id="item2" name="category" value="Submarines">
+                      <label for="item2">Submarines</label><br>
+                      <input type="radio" id="item3" name="category" value="Fries">
+                      <label for="item3">Fries</label><br>
+                      <input type="radio" id="item4" name="category" value="Pasta">
+                      <label for="item4">Pasta</label><br>
+                      <input type="radio" id="item5" name="category" value="Chicken">
+                      <label for="item5">Chicken</label><br>
+                      <input type="radio" id="item6" name="category" value="Beverages">
+                      <label for="item6">Beverages</label>
+                      <div class="invalid-feedback">Category is required.</div>
+                    </div>
+                    <div class="col-sm-7">
+                      <label for="firstName" class="form-label" style="font-weight: bold;">Name</label>
                       <input type="text" class="form-control" id="name" placeholder="" required>
                       <div class="invalid-feedback">Valid name is required.</div>
                     </div>
               
                     <div class="col-sm-7">
-                      <label for="formFile" class="form-label">Input Picture</label>
+                      <label for="formFile" class="form-label" style="font-weight: bold;">Input Picture</label>
                       <input class="form-control" type="file" id="image">
                     </div>
               
                     <div class="col-sm-7">
-                      <label for="price" class="form-label">Price</label>
+                      <label for="price" class="form-label" style="font-weight: bold;">Price</label>
                       <input type="text" class="form-control" id="price" placeholder="" required>
                       <div class="invalid-feedback">Price is required.</div>
                     </div>
+
+                    <div class="col-sm-7">
+                      <label for="discount" class="form-label" style="font-weight: bold;">Discount</label>
+                      <input type="text" class="form-control" id="discount" placeholder="0.00" required>
+                    </div>
               
                     <div class="col-sm-7">
-                      <label for="quentity" class="form-label">Quantity</label>
+                      <label for="quentity" class="form-label" style="font-weight: bold;">Stock</label>
                       <input type="text" class="form-control" id="qty" placeholder="" required>
-                      <div class="invalid-feedback">Quantity is required.</div>
+                      <div class="invalid-feedback">Stock is required.</div>
                     </div>
                   </div>
                   <hr class="col-sm-7">
                   <div class="d-flex flex-column align-items-center">
-                  <button class="btn btn-primary w-10 py-2" type="submit">Add</button></div>
+                  <button class="btn btn-primary w-10 py-2" type="submit" onclick="addItem()">Add</button></div>
                 </form>
               
                 <h4 class="mt-5">Product List</h4>

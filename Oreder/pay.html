@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +10,13 @@
       font-family: Arial, sans-serif;
       margin: 20px;
     }
-    .item-details, .payment-options, .order-summary {
+
+    .item-details,
+    .payment-options,
+    .order-summary {
       margin-bottom: 20px;
     }
+
     button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -20,12 +25,14 @@
       border: none;
       cursor: pointer;
     }
+
     button:hover {
       background-color: darkgreen;
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
+
 <body>
   <h1>Payment Page</h1>
   <div id="item-details" class="item-details">
@@ -64,73 +71,74 @@
   </div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
+        const params = new URLSearchParams(window.location.search);
 
-    const image = params.get('image');
-    const name = params.get('name');
-    const price = parseFloat(params.get('price')); 
+        const image = params.get('image');
+        const name = params.get('name');
+        const price = parseFloat(params.get('price'));
 
 
-    const itemDetailsDiv = document.getElementById('item-details');
-    itemDetailsDiv.innerHTML = `
-      <img src="${decodeURIComponent(image)}" alt="${decodeURIComponent(name)}" width="200">
-      <h2>${decodeURIComponent(name)}</h2>
-      <p>Price per item: $${price.toFixed(2)}</p>
-    `;
+        const itemDetailsDiv = document.getElementById('item-details');
+        itemDetailsDiv.innerHTML = `
+          <img src="${image}" alt="${name}" width="200">
+          <h2>${decodeURIComponent(name)}</h2>
+          <p>Price per item: $${price.toFixed(2)}</p>
+        `;
 
-    const orderForm = document.getElementById('order-form');
-    const totalPriceElem = document.getElementById('total-price');
-    const paymentSection = document.getElementById('payment-section');
+        const orderForm = document.getElementById('order-form');
+        const totalPriceElem = document.getElementById('total-price');
+        const paymentSection = document.getElementById('payment-section');
 
-    const quantityInput = document.getElementById('quantity');
-    quantityInput.addEventListener('input', () => {
-      const quantity = parseInt(quantityInput.value) || 1;
-      const totalPrice = price * quantity;
-      totalPriceElem.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
-    });
+        const quantityInput = document.getElementById('quantity');
+        quantityInput.addEventListener('input', () => {
+          const quantity = parseInt(quantityInput.value) || 1;
+          const totalPrice = price * quantity;
+          totalPriceElem.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+        });
 
-    orderForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+        orderForm.addEventListener('submit', (e) => {
+          e.preventDefault();
 
-      const quantity = parseInt(quantityInput.value) || 1;
-      const totalPrice = price * quantity;
+          const quantity = parseInt(quantityInput.value) || 1;
+          const totalPrice = price * quantity;
 
-      orderForm.style.display = 'none';
-      paymentSection.style.display = 'block';
+          orderForm.style.display = 'none';
+          paymentSection.style.display = 'block';
 
-      itemDetailsDiv.innerHTML += `
-        <h3>Order Summary</h3>
-        <p>Item: ${decodeURIComponent(name)}</p>
-        <p>Quantity: ${quantity}</p>
-        <p>Total Price: $${totalPrice.toFixed(2)}</p>
-      `;
-    });
+          itemDetailsDiv.innerHTML += `
+            <h3>Order Summary</h3>
+            <p>Item: ${decodeURIComponent(name)}</p>
+            <p>Quantity: ${quantity}</p>
+            <p>Total Price: $${totalPrice.toFixed(2)}</p>
+          `;
+        });
 
-    const paymentForm = document.getElementById('payment-form');
-    paymentForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+        const paymentForm = document.getElementById('payment-form');
+        paymentForm.addEventListener('submit', (e) => {
+          e.preventDefault();
 
-      const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
-      alert(`Order confirmed! You paid $${price * parseInt(quantityInput.value)} using ${paymentMethod}.`);
-      window.location.href = 'confirmation.html'; 
-    });
+          const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+          alert(`Order confirmed! You paid $${price * parseInt(quantityInput.value)} using ${paymentMethod}.`);
+          window.location.href = 'confirmation.html';
+        });
 
-    const generatePdfBtn = document.getElementById('generate-pdf');
-    generatePdfBtn.addEventListener('click', () => {
-      const quantity = parseInt(quantityInput.value) || 1;
-      const totalPrice = price * quantity;
+        const generatePdfBtn = document.getElementById('generate-pdf');
+        generatePdfBtn.addEventListener('click', () => {
+          const quantity = parseInt(quantityInput.value) || 1;
+          const totalPrice = price * quantity;
 
-      const { jsPDF } = window.jspdf;
-      const pdf = new jsPDF();
+          const { jsPDF } = window.jspdf;
+          const pdf = new jsPDF();
 
-      pdf.text("Order Bill", 105, 10, { align: "center" });
-      pdf.text(`Item: ${decodeURIComponent(name)}`, 20, 30);
-      pdf.text(`Quantity: ${quantity}`, 20, 40);
-      pdf.text(`Total Price: $${totalPrice.toFixed(2)}`, 20, 50);
-      pdf.text(`Thank you for your purchase!`, 20, 70);
+          pdf.text("Order Bill", 105, 10, { align: "center" });
+          pdf.text(`Item: ${decodeURIComponent(name)}`, 20, 30);
+          pdf.text(`Quantity: ${quantity}`, 20, 40);
+          pdf.text(`Total Price: $${totalPrice.toFixed(2)}`, 20, 50);
+          pdf.text(`Thank you for your purchase!`, 20, 70);
 
-      pdf.save("order-bill.pdf");
-    });
+          pdf.save("order-bill.pdf");
+        });
   </script>
 </body>
+
 </html>

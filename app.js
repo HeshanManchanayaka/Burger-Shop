@@ -15,7 +15,7 @@ function displayProducts() {
                <div class="card-body">
                <div class="carousel-overlay">
                   <button class="btn btn-primary">Add to Cart</button>
-                  <a href="Oreder/pay.html?image=${encodeURIComponent(p.image)}&name=${encodeURIComponent(p.name)}&price=${encodeURIComponent(p.price)}" class="btn btn-success">Buy Now</a>    
+                  <a href="Oreder/pay.html?image=${(p.image)}&name=${(p.name)}&price=${(p.price)}" class="btn btn-success">Buy Now</a>    
                   </div>
                  <h5 class="card-title">${p.name}</h5>  
                  <p class="card-text">RS : ${p.price} /=</p>

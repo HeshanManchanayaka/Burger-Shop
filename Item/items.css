@@ -1,0 +1,24 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.left-part, .right-part {
+    flex: 1; 
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.left-part {
+    background-color: #f4f4f4; 
+}
+
+.right-part {
+    background-color: #e0e0e0; 
+}
